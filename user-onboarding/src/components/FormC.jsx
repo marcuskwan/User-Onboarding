@@ -18,7 +18,8 @@ export function FormC({ handleChange, values, errors, touched, isSubmitting }) {
           checked={values.tos}
           onChange={handleChange}
         />
-        <button>Submit</button>
+        <button type="submit">Submit</button>
+        {isSubmitting && <p>Submitting..</p>}
       </Form>
     </div>
   );
@@ -54,7 +55,7 @@ export default withFormik({
     formikBag.setSubmitting(true);
     axios.post(url, values).then(response => {
       console.log(response);
-      window.alert("Post success");
+      window.alert(`Post success! Welcome ${response.data.name} !`);
       formikBag.setSubmitting(false);
     });
   },
