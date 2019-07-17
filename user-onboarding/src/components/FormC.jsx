@@ -106,9 +106,11 @@ export default withFormik({
     // make this required 1 symbol and 1 uppercase later
     password: Yup.string()
       .min(1, "Password must be more than 1 character")
-      .required("Password is required"),
+      .required("Password is required")
+      .matches(/[a-zA-Z]/, "Password can only contain letters"),
     // user needs to tick the checkbox
     // checkbox: Yup.boolean().required("Terms of Service must be accepted"),
+    tos: Yup.boolean().oneOf([true], "Must accept terms of service"),
   }),
   handleSubmit(values, formikBag) {
     formikBag.resetForm();
